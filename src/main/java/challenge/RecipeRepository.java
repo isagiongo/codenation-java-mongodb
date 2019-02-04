@@ -5,4 +5,5 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 @EnableMongoRepositories(basePackages="challenge")
 public interface RecipeRepository extends MongoRepository<Recipe, String> {
+	
 }

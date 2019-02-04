@@ -52,8 +52,11 @@ public class RecipeServiceImpl implements RecipeService {
 
 	@Override
 	public List<Recipe> search(String search) {
-		return mongoTemplate.find(Query.query(Criteria.where("title").is(search).and("description").is(search))
-				.with(Sort.by("title").ascending()), Recipe.class);
+		return mongoTemplate.find(Query.query(new Criteria()
+				.orOperator(Criteria.where("title").regex(search, "i"),
+							Criteria.where("description").regex(search, "i")))
+				.with(Sort.by("title").ascending()),
+				Recipe.class);
 	}
 
 //	@Override
