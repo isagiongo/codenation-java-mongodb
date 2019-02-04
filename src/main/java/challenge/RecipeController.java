@@ -41,13 +41,13 @@ public class RecipeController {
 		return recipeService.get(id);
 	}
 
-	@GetMapping(value = "/ingredient/{ingredient}")
-	public List<Recipe> listByIngredient(@PathVariable String ingredient) {
+	@GetMapping(value = "/ingredient")
+	public List<Recipe> listByIngredient(@RequestParam String ingredient) {
 		return recipeService.listByIngredient(ingredient);
 	}
 
-	@GetMapping("/search/{search}")
-	public List<Recipe> search(@PathVariable String search) {
+	@GetMapping(value = "/search")
+	public List<Recipe> search(@RequestParam String search) {
 		return recipeService.search(search);
 	}
 
