@@ -17,9 +17,9 @@ public interface RecipeService {
 
 	List<Recipe> search(String search);
 
-//	void like(String id, String userId);
-//
-//	void unlike(String id, String userId);
+	void like(String id, String userId);
+
+	void unlike(String id, String userId);
 //
 //	RecipeComment addComment(String id, RecipeComment comment);
 //

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -51,13 +52,15 @@ public class RecipeController {
 		return recipeService.search(search);
 	}
 
-//	public void like() {
-//		service.like(null, null);
-//	}
-//
-//	public void unlike() {
-//		service.unlike(null, null);
-//	}
+	@PostMapping(value = "/{id}/like/{userId}")
+	public void like(@PathVariable String id, @PathVariable String userId) {
+		recipeService.like(id, userId);
+	}
+
+	@RequestMapping(value="/{id}/like/{userId}",method={RequestMethod.GET,RequestMethod.DELETE})
+	public void unlike(@PathVariable String id, @PathVariable String userId) {
+		recipeService.unlike(id, userId);
+	}
 //
 //	public RecipeComment addComment() {
 //		return service.addComment(null, null);

@@ -59,14 +59,19 @@ public class RecipeServiceImpl implements RecipeService {
 				Recipe.class);
 	}
 
-//	@Override
-//	public void like(String id, String userId) {
-//	}
-//
-//	@Override
-//	public void unlike(String id, String userId) {
-//
-//	}
+	@Override
+	public void like(String id, String userId) {
+		mongoTemplate.updateFirst(
+				Query.query(Criteria.where("_id").is(id)), new Update().addToSet("likes", userId),
+				Recipe.class);
+	}
+
+	@Override
+	public void unlike(String id, String userId) {
+		mongoTemplate.updateFirst(
+				Query.query(Criteria.where("_id").is(id)), new Update().pull("likes", userId),
+				Recipe.class);
+	}
 //
 //	@Override
 //	public RecipeComment addComment(String id, RecipeComment comment) {
