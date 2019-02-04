@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class RecipeServiceImpl implements RecipeService {
 
+	@Autowired
 	private MongoTemplate mongoTemplate;
 
 	@Autowired
@@ -26,7 +27,6 @@ public class RecipeServiceImpl implements RecipeService {
 
 	@Override
 	public void update(String id, Recipe recipe) {
-
 		mongoTemplate.updateFirst(
 				Query.query(Criteria.where("_id").is(id)), Update.update("title", recipe.getTitle())
 						.set("description", recipe.getDescription()).set("ingredients", recipe.getIngredients()),
