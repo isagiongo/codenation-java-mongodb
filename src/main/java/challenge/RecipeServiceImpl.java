@@ -3,6 +3,7 @@ package challenge;
 import java.util.List;
 import java.util.Optional;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -19,6 +20,9 @@ public class RecipeServiceImpl implements RecipeService {
 
 	@Autowired
 	private RecipeRepository recipeRepository;
+	
+	@Autowired
+	private RecipeCommentRepository recipeCommentRepository;
 
 	@Override
 	public Recipe save(Recipe recipe) {
@@ -72,11 +76,16 @@ public class RecipeServiceImpl implements RecipeService {
 				Query.query(Criteria.where("_id").is(id)), new Update().pull("likes", userId),
 				Recipe.class);
 	}
-//
-//	@Override
-//	public RecipeComment addComment(String id, RecipeComment comment) {
-//		return null;
-//	}
+
+	@Override
+	public RecipeComment addComment(String id, RecipeComment comment) {
+		comment.setId(new ObjectId().toString());
+		recipeCommentRepository.save(comment);
+		mongoTemplate.updateFirst(
+				Query.query(Criteria.where("_id").is(id)), new Update().addToSet("comments", comment),
+				Recipe.class);
+		return comment;
+	}
 //
 //	@Override
 //	public void updateComment(String id, String commentId, RecipeComment comment) {

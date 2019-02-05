@@ -20,9 +20,9 @@ public interface RecipeService {
 	void like(String id, String userId);
 
 	void unlike(String id, String userId);
-//
-//	RecipeComment addComment(String id, RecipeComment comment);
-//
+
+	RecipeComment addComment(String id, RecipeComment comment);
+
 //	void updateComment(String id, String commentId, RecipeComment comment);
 //
 //	void deleteComment(String id, String commentId);

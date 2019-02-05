@@ -61,10 +61,11 @@ public class RecipeController {
 	public void unlike(@PathVariable String id, @PathVariable String userId) {
 		recipeService.unlike(id, userId);
 	}
-//
-//	public RecipeComment addComment() {
-//		return service.addComment(null, null);
-//	}
+
+	@PostMapping(value = "/{id}/comment")
+	public RecipeComment addComment(@PathVariable String id, @RequestBody RecipeComment comment) {
+		return recipeService.addComment(id, comment);
+	}
 //
 //	public void updateComment() {
 //		service.updateComment(null, null, null);
