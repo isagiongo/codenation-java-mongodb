@@ -66,13 +66,15 @@ public class RecipeController {
 	public RecipeComment addComment(@PathVariable String id, @RequestBody RecipeComment comment) {
 		return recipeService.addComment(id, comment);
 	}
-//
-//	public void updateComment() {
-//		service.updateComment(null, null, null);
-//	}
-//
-//	public void deleteComment() {
-//		service.deleteComment(null, null);
-//	}
+
+	@PutMapping(value = "/{id}/comment/{commentId}")
+	public void updateComment(@PathVariable String id, @PathVariable String commentId, @RequestBody RecipeComment comment) {
+		recipeService.updateComment(id, commentId, comment);
+	}
+
+	@DeleteMapping(value="/{id}/comment/{commentId}")
+	public void deleteComment(@PathVariable String id, @PathVariable String commentId) {
+		recipeService.deleteComment(id, commentId);
+	}
 
 }

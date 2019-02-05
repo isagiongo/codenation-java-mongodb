@@ -86,15 +86,18 @@ public class RecipeServiceImpl implements RecipeService {
 				Recipe.class);
 		return comment;
 	}
-//
-//	@Override
-//	public void updateComment(String id, String commentId, RecipeComment comment) {
-//
-//	}
-//
-//	@Override
-//	public void deleteComment(String id, String commentId) {
-//
-//	}
 
+	@Override
+	public void updateComment(String id, String commentId, RecipeComment comment) {
+		mongoTemplate.updateFirst(
+				Query.query(Criteria.where("_id").is(id).and("comments._id").is(commentId)), 
+				Update.update("comments.$.comment", comment.getComment()),
+				Recipe.class);
+	}
+
+	@Override
+	public void deleteComment(String id, String commentId) {
+		mongoTemplate.remove(Query.query(Criteria.where("_id").is(id).and("comments._id").is(commentId)),
+				RecipeComment.class);
+	}
 }

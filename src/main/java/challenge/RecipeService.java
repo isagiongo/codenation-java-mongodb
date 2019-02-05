@@ -23,8 +23,8 @@ public interface RecipeService {
 
 	RecipeComment addComment(String id, RecipeComment comment);
 
-//	void updateComment(String id, String commentId, RecipeComment comment);
-//
-//	void deleteComment(String id, String commentId);
+	void updateComment(String id, String commentId, RecipeComment comment);
+
+	void deleteComment(String id, String commentId);
 
 }
