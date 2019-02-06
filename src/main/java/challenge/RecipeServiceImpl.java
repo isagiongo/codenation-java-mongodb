@@ -97,7 +97,10 @@ public class RecipeServiceImpl implements RecipeService {
 
 	@Override
 	public void deleteComment(String id, String commentId) {
-		mongoTemplate.remove(Query.query(Criteria.where("_id").is(id).and("comments._id").is(commentId)),
-				RecipeComment.class);
+		  mongoTemplate.updateFirst(
+	                Query.query(Criteria.where("_id").is(id)),
+	                new Update().pull("comments", Query.query(Criteria.where("_id").is(commentId))),
+	                Recipe.class
+	        );
 	}
 }

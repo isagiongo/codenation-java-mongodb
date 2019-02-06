@@ -1,0 +1,16 @@
+> Task :clean
+
+> Task :compileJava
+
+> Task :processResources
+> Task :classes
+> Task :compileTestJava
+> Task :processTestResources NO-SOURCE
+> Task :testClasses
+
+> Task :test
+2019-02-06 17:49:22.580  INFO 14521 --- [       Thread-6] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@289fc14f: startup date [Wed Feb 06 17:49:14 BRST 2019]; root of context hierarchy
+2019-02-06 17:49:22.589  INFO 14521 --- [       Thread-6] org.mongodb.driver.connection            : Closed connection [connectionId{localValue:3, serverValue:10}] to localhost:27017 because the pool has been closed.
+
+BUILD SUCCESSFUL in 13s
+5 actionable tasks: 5 executed
